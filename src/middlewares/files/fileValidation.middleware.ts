@@ -3,12 +3,11 @@ import { validateOrReject, ValidationError } from 'class-validator';
 import { NextFunction, Request, Response } from 'express';
 import { HttpException } from '@exceptions/httpException';
 import { genericValidation } from '@/utils/files/validation/genericValidation';
-import { FormattedData } from '@/utils/files/types';
+import { FormattedData, Sheet } from '@/utils/files/types';
 
 export const fileValidation = (req: Request, res: Response, next: NextFunction) => {
-  // generic validation
   const { invoicingMonth } = req.query;
-  const parsedFile = req.parsedFile;
+  const parsedFile = req.parsedFile as FormattedData;
 
   try {
     if (!invoicingMonth) {
@@ -19,7 +18,7 @@ export const fileValidation = (req: Request, res: Response, next: NextFunction) 
       next(new HttpException(422, 'Date is missing in the document'));
     }
 
-    const genericErrors = genericValidation(invoicingMonth as string, parsedFile as FormattedData);
+    const genericErrors = genericValidation(invoicingMonth as string, parsedFile);
     if (genericErrors.length > 0) {
       next(new HttpException(422, genericErrors.join(' ')));
     }

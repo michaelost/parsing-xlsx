@@ -8,7 +8,7 @@ interface InvoiceData {
   InvoiceTotal?: number;
 }
 
-interface ProcessedFile {
+export interface ProcessedFile {
   InvoicingMonth: string;
   currencyRates: { [key: string]: number };
   invoicesData: InvoiceData[];
