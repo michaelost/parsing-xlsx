@@ -48,7 +48,7 @@ npm run dev
 
 ## API Endpoint
 
-### POST /upload
+### POST /files
 
 #### Description
 
@@ -56,24 +56,19 @@ Uploads an XLS file containing invoice data for processing. Validates the data, 
 
 #### Request
 
-- **URL**: `/upload`
+- **URL**: `http://localhost:3000/files?invoicingMonth=YYYY-MM`
 - **Method**: `POST`
 - **Headers**:
   - `Content-Type: multipart/form-data`
 - **Body**:
   - `file`: The XLS file to be uploaded.
-  - `invoicingMonth`: The invoicing month in the format `YYYY-MM`.
 
 #### Example
 
 ```bash
-curl -X POST http://localhost:3000/upload \
-  -F 'file=@/path/to/your/invoice-file.xls' \
-  -F 'invoicingMonth=2023-09'
+curl -X POST "http://localhost:3000/files?invoicingMonth=2023-09" \
+  -F 'file=@/path/to/your/invoice-file.xls'
 ```
-
-
-#### Response
 
 #### Response
 
