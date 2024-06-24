@@ -12,12 +12,6 @@ export function extractCurrencyRates(sheet: Sheet, indexes: Indexes): CurrencyRa
   const firstColumnKey = Object.keys(sheet[0])[0];
   const currencyRates: CurrencyRates = {};
 
-  /*
-  if (indexes.currencyRatesEndIndex < 0 || indexes.currencyRatesEndIndex < 0) {
-    return currencyRates
-  }
-  */
-
   for (let i = indexes.currencyRatesStartIndex; i <= indexes.currencyRatesEndIndex; i++) {
     const row = sheet[i];
     const firstColumnValue = row[firstColumnKey];
@@ -40,7 +34,6 @@ export function extractItems(sheet: Sheet, indexes: Indexes): any[] {
   for (let i = indexes.dataStartIndex; i < indexes.dataEndIndex; i++) {
     const row = sheet[i];
 
-    // Map the row to the header keys
     const formattedRow: any = {};
     for (const key of Object.keys(headerRow)) {
       const headerValue = headerRow[key];
