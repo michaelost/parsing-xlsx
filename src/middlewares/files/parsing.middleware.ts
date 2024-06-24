@@ -10,7 +10,6 @@ export const parsingMiddleware = (req: Request, res: Response, next: NextFunctio
     req.parsedFile = formatSheetData(req.parsedFile);
     next();
   } catch (parseError) {
-    console.error('Error parsing file:', parseError);
-    return res.status(500).send('Error parsing XLS file');
+    next(new HttpException(422, parseError.message));
   }
 };

@@ -12,6 +12,12 @@ export function extractCurrencyRates(sheet: Sheet, indexes: Indexes): CurrencyRa
   const firstColumnKey = Object.keys(sheet[0])[0];
   const currencyRates: CurrencyRates = {};
 
+  /*
+  if (indexes.currencyRatesEndIndex < 0 || indexes.currencyRatesEndIndex < 0) {
+    return currencyRates
+  }
+  */
+
   for (let i = indexes.currencyRatesStartIndex; i <= indexes.currencyRatesEndIndex; i++) {
     const row = sheet[i];
     const firstColumnValue = row[firstColumnKey];

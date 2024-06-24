@@ -41,7 +41,7 @@ export function detectIndexes(sheet: any[]): Indexes {
   }
 
   if (currencyRatesStartIndex === -1 || headerIndex === -1) {
-    throw new Error('Required sections not found');
+    throw new Error('Currency Rates section not found');
   }
 
   return {
