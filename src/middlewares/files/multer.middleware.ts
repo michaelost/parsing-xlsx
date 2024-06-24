@@ -1,4 +1,5 @@
 import multer from 'multer';
+import { HttpException } from '@/exceptions/httpException';
 
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage }).single('file');
@@ -7,10 +8,10 @@ export function multerMiddleware() {
   return (req, res, next) => {
     return upload(req, res, err => {
       if (err) {
-        res.status(400).json({ message: err.message });
+        next(new HttpException(500, err.message));
       } else {
         if (!req.file) {
-          res.status(400).json({ message: 'No file uploaded!' });
+          next(new HttpException(400, 'No file uploaded!'));
         }
       }
       next();
