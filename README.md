@@ -44,8 +44,7 @@ To start the server with file watching and auto-reloading, use:
 
 ```bash
 npm run dev
-
-
+```
 
 ## API Endpoint
 
